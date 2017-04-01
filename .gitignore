@@ -45,3 +45,13 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+/CMS-RemoteInterface/nbproject/private/
+/AppClubhouse/nbproject/private/
+/AppClubhouse/AppClubhouse-war/nbproject/private/
+/AppClubhouse/AppClubhouse-ejb/nbproject/private/
+/AppClubhouse/AppClubhouse-war/build/
+/AppClubhouse/AppClubhouse-war/dist/
+/AppClubhouse/AppClubhouse-ejb/build/
+/AppClubhouse/AppClubhouse-ejb/dist/
+/AppClubhouse/dist/
+/AppClubhouse/build/
