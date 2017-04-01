@@ -1,0 +1,354 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head lang="en">
+        <meta charset="UTF-8"/>
+        <title>Clubhouse</title>
+        <meta name="description" content="Worthy a Bootstrap-based, Responsive HTML5 Template"/>
+        <meta name="author" content="htmlcoder.me"/>
+
+        <!-- Mobile Meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="images/favicon.ico"/>
+
+        <!-- Web Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
+        <link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'/>
+
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
+
+        <!-- Font Awesome CSS -->
+        <link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+
+        <!-- Plugins -->
+        <link href="css/animations.css" rel="stylesheet"/>
+
+        <!-- Worthy core CSS file -->
+        <link href="css/style.css" rel="stylesheet"/>
+
+        <!-- Custom css --> 
+        <link href="css/custom.css" rel="stylesheet"/>
+    </h:head>
+    <h:body class="no-trans">
+
+        <!-- scrollToTop -->
+        <!-- ================ -->
+        <div class="scrollToTop"><i class="icon-up-open-big"></i></div>
+
+        <!-- header start -->
+        <!-- ================ --> 
+        <header class="header fixed clearfix navbar navbar-fixed-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+
+                        <!-- header-left start -->
+                        <!-- ================ -->
+                        <div class="header-left clearfix">
+
+                            <!-- logo -->
+                            <div class="logo smooth-scroll">
+                                <a href="#banner"><img id="logo" src="images/logo.png" alt="Clubhouse"/></a>
+                            </div>
+
+                            <!-- name-and-slogan -->
+                            <div class="site-name-and-slogan smooth-scroll">
+                                <div class="site-name"><a href="#banner">Clubhouse</a></div>
+                                <div class="site-slogan">Free Bootstrap Theme by <a target="_blank" href="http://htmlcoder.me">HtmlCoder</a></div>
+                            </div>
+
+                        </div>
+                        <!-- header-left end -->
+
+                    </div>
+                    <div class="col-md-8">
+
+                        <!-- header-right start -->
+                        <!-- ================ -->
+                        <div class="header-right clearfix">
+
+                            <!-- main-navigation start -->
+                            <!-- ================ -->
+                            <div class="main-navigation animated">
+
+                                <!-- navbar start -->
+                                <!-- ================ -->
+                                <nav class="navbar navbar-default" role="navigation">
+                                    <div class="container-fluid">
+
+                                        <!-- Toggle get grouped for better mobile display -->
+                                        <div class="navbar-header">
+                                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                                <span class="sr-only">Toggle navigation</span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                            </button>
+                                        </div>
+
+                                        <!-- Collect the nav links, forms, and other content for toggling -->
+                                        <div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
+                                            <ul class="nav navbar-nav navbar-right">
+                                                <li class="active"><a href="#banner">Home</a></li>
+                                                <li><a href="#about">About</a></li>
+                                                <li><a href="#facilities">Facilities</a></li>
+                                                <li><a data-toggle="modal" data-target="#login">Login</a></li>
+                                                <li><a data-toggle="modal" data-target="#sign-up">Sign Up</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </nav>
+                                <!-- navbar end -->
+
+                            </div>
+                            <!-- main-navigation end -->
+
+                        </div>
+                        <!-- header-right end -->
+
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header end -->
+        <!-- banner start -->
+        <!-- ================ -->
+        <div id="banner" class="banner">
+            <div class="banner-image"></div>
+            <div class="banner-caption">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 object-non-visible" data-animation-effect="fadeIn">
+                            <h1 class="text-center">We are <span>Clubhouse</span></h1>
+                            <p class="lead text-center">Providing Gym Room, Swimming Pool, Sauna Rooms, Study Rooms, and BBQ booking and usage services.</p>
+                            <center><a class="button lead" data-toggle="modal" data-target="#login">Login</a>
+                                <a class="button lead" data-toggle="modal" data-target="#sign-up">Sign Up</a></center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- banner end -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="login-label" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title text-center" id="login-label">Welcome to Clubhouse</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h:form>
+                            <div class="modal-body">
+                                <center><h:panelGrid columns="2">
+                                        <h3>UserName: <h:inputText id="username" value="#{login.username}" /></h3>
+                                        <h3>Password: <h:inputSecret id="password" value="#{login.password}"/></h3>
+                                    </h:panelGrid></center>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton class="btn btn-sm btn-default" action="#{login.valid()}" value="Login" />
+                                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </h:form> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal end -->
+
+        <div class="modal fade" id="sign-up" tabindex="-1" role="dialog" aria-labelledby="sign-up-label" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title text-center" id="sign-up-label">Welcome to Clubhouse</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h:form>
+                            <div class="modal-body">
+                                <center><h:panelGrid columns="2">
+                                        <h3>Login Name: <h:inputText id="username" value="#{login.username}" /></h3>
+                                        <h3>Password: <h:inputSecret id="password" value="#{login.password}"/></h3>
+                                        <h3>Confirm Password: <h:inputSecret id="cpassword" value="#{login.password}"/></h3>
+                                        <h3>First Name: <h:inputText id="fname" value="#{login.password}"/></h3>
+                                        <h3>Last Name: <h:inputText id="lname" value="#{login.password}"/></h3>
+                                        <h3>Email Address: <h:inputText id="email" value="#{login.password}"/></h3>
+                                        <h3>Mailing Address: <h:inputText id="address" value="#{login.password}"/></h3>
+                                    </h:panelGrid>
+                                </center>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton class="btn btn-sm btn-default" action="#{login.valid()}" value="Sign Up" />
+                                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </h:form>
+                    </div>                
+                </div>
+            </div>
+        </div>
+        <!-- Modal end -->
+
+        <!-- section start -->
+        <!-- ================ -->
+        <div class="section clearfix object-non-visible" data-animation-effect="fadeIn">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 id="about" class="title text-center">About <span>Clubhouse</span></h1>
+                        <p class="lead text-center">Booking and usage services.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- section end -->
+
+        <!-- section start -->
+        <!-- ================ -->
+        <div class="section translucent-bg bg-image-1 blue">
+            <div class="container object-non-visible" data-animation-effect="fadeIn">
+                <h1 id="facilities"  class="text-center title">Clubhouse Facilities</h1>
+                <div class="space"></div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="media">
+                            <div class="media-body text-right">
+                                <h4 class="media-heading">Gym Room</h4>
+                                <p>Located at 1/F and 2/F, providing a wide range of free-weights and modern exercise machines.</p>
+                                <p>Monday to Friday: 10:00 - 22:00.</p>
+                                <p>Saturday Sunday and Public Holiday: 08:00 - 22:00.</p>
+                            </div>
+                            <div class="media-right">
+                                <i class="fa fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-body text-right">
+                                <h4 class="media-heading">Study Rooms</h4>
+                                <p>7 study rooms on 3/F with 50 seats, providing a quite studying place to students.</p>
+                                <p>Monday to Friday: 09:00 - 22:00.</p>
+                                <p>Saturday Sunday and Public Holiday: 09:00 - 17:00.</p>
+                            </div>
+                            <div class="media-right">
+                                <i class="fa fa-check"></i>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-body text-right">
+                                <h4 class="media-heading">Sauna Rooms</h4>
+                                <p>Located at 1/F with using the highest quality, hand-selected wood for our sauna rooms and interiors.</p> 
+                                <p>Monday to Friday: 10:00 - 22:00.</p>
+                                <p> Saturday Sunday and Public Holiday: 08:00 - 22:00.</p>
+                            </div>
+                            <div class="media-right">
+                                <i class="fa fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space visible-xs"></div>
+                    <div class="col-sm-6">
+                        <div class="media">
+                            <div class="media-left">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Swimming Pool</h4>                               
+                                <p>Located on G/F with Main pool (50 meters long, wide 25 meters (8 swimming line), water depth of 1.4 meters -1.93 meters),
+                                    <br/>Diving pool (water depth of 4.5 meters),
+                                    <br/>Amusement pool (water depth 0.5-1.5 m),
+                                    <br/>and Water ladder.</p>
+                                <p>Open on everyday in 3 sessions:</p>
+                                <p>06:30 – 12:00, 13:00 – 18:00, and 19:00 – 22:00.</p>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">BBQ</h4>
+                                <p>Located at G/F and 5/F which can host a small family reunion, a birthday party, or even a business event.</p>
+                                <p>Monday to Friday: 13:00 - 23:00. </p>
+                                <p>Saturday Sunday and Public Holiday: 10:00 - 24:00.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- section end -->
+
+        <!-- section start -->
+        <!-- ================ -->
+        <div class="default-bg space blue">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="text-center">Let's Play Together!</h1>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- section end -->       
+
+        <!-- footer start -->
+        <!-- ================ -->
+        <footer id="footer">                 
+
+            <!-- .subfooter start -->
+            <!-- ================ -->
+            <div class="subfooter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="text-center">Copyright © 2017 Clubhouse by <a target="_blank" href="http://htmlcoder.me">HtmlCoder</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- .subfooter end -->
+
+        </footer>
+        <!-- footer end -->
+
+        <!-- JavaScript files placed at the end of the document so the pages load faster
+        ================================================== -->
+        <!-- Jquery and Bootstap core js files -->
+        <script type="text/javascript" src="plugins/jquery.min.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Modernizr javascript -->
+        <script type="text/javascript" src="plugins/modernizr.js"></script>
+
+        <!-- Isotope javascript -->
+        <script type="text/javascript" src="plugins/isotope/isotope.pkgd.min.js"></script>
+
+        <!-- Backstretch javascript -->
+        <script type="text/javascript" src="plugins/jquery.backstretch.min.js"></script>
+
+        <!-- Appear javascript -->
+        <script type="text/javascript" src="plugins/jquery.appear.js"></script>
+
+        <!-- Initialization of Plugins -->
+        <script type="text/javascript" src="js/template.js"></script>
+
+        <!-- Custom Scripts -->
+        <script type="text/javascript" src="js/custom.js"></script>
+    </h:body>
+</html>
+
