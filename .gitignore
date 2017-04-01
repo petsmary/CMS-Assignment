@@ -56,3 +56,5 @@ Temporary Items
 /AppClubhouse/dist/
 /AppClubhouse/build/
 /AppClubhouse-ejb/nbproject/private/
+/CMS-RemoteInterface/build/
+/CMS-RemoteInterface/dist/
