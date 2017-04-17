@@ -38,4 +38,13 @@ public class SessionUtils {
             return null;
         }
     }
+    
+    public static String getIsOfficer() {
+        HttpSession session = getSession();
+        if (session != null) {
+            return (String) session.getAttribute("officer");
+        } else {
+            return null;
+        }
+    }
 }

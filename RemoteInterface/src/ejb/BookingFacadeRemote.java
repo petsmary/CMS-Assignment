@@ -29,5 +29,7 @@ public interface BookingFacadeRemote {
     List<Booking> findRange(int[] range);
 
     int count();
+
+    boolean check(String cust, String id, int type);
     
 }

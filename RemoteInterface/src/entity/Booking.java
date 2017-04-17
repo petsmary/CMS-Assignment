@@ -6,7 +6,6 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -30,30 +29,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Booking.findAll", query = "SELECT b FROM Booking b")
     , @NamedQuery(name = "Booking.findByBookingId", query = "SELECT b FROM Booking b WHERE b.bookingId = :bookingId")
-    , @NamedQuery(name = "Booking.findByBookingdate", query = "SELECT b FROM Booking b WHERE b.bookingdate = :bookingdate")
-    , @NamedQuery(name = "Booking.findByStart", query = "SELECT b FROM Booking b WHERE b.start = :start")
-    , @NamedQuery(name = "Booking.findByEnd", query = "SELECT b FROM Booking b WHERE b.end = :end")
     , @NamedQuery(name = "Booking.findByStatus", query = "SELECT b FROM Booking b WHERE b.status = :status")})
 public class Booking implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 5)
     @Column(name = "booking_id")
     private String bookingId;
     @Basic(optional = false)
-    @Column(name = "bookingdate")
-    @Temporal(TemporalType.DATE)
-    private Date bookingdate;
-    @Basic(optional = false)
-    @Column(name = "start")
-    @Temporal(TemporalType.TIME)
-    private Date start;
-    @Basic(optional = false)
-    @Column(name = "end")
-    @Temporal(TemporalType.TIME)
-    private Date end;
-    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "status")
     private String status;
     @JoinColumn(name = "sch_gym_id", referencedColumnName = "gym_id")
@@ -82,11 +70,8 @@ public class Booking implements Serializable {
         this.bookingId = bookingId;
     }
 
-    public Booking(String bookingId, Date bookingdate, Date start, Date end, String status) {
+    public Booking(String bookingId, String status) {
         this.bookingId = bookingId;
-        this.bookingdate = bookingdate;
-        this.start = start;
-        this.end = end;
         this.status = status;
     }
 
@@ -96,30 +81,6 @@ public class Booking implements Serializable {
 
     public void setBookingId(String bookingId) {
         this.bookingId = bookingId;
-    }
-
-    public Date getBookingdate() {
-        return bookingdate;
-    }
-
-    public void setBookingdate(Date bookingdate) {
-        this.bookingdate = bookingdate;
-    }
-
-    public Date getStart() {
-        return start;
-    }
-
-    public void setStart(Date start) {
-        this.start = start;
-    }
-
-    public Date getEnd() {
-        return end;
-    }
-
-    public void setEnd(Date end) {
-        this.end = end;
     }
 
     public String getStatus() {

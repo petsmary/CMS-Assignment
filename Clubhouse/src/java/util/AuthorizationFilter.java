@@ -44,8 +44,11 @@ public class AuthorizationFilter implements Filter {
             String reqURI = reqt.getRequestURI();
             if (reqURI.indexOf("/adminlogin.xhtml") >= 0) {
                 chain.doFilter(request, response);
-            }
-            else if (reqURI.indexOf("/login.xhtml") >= 0
+            } else if ((reqURI.indexOf("/admin.xhtml") >= 0 
+                    || reqURI.indexOf("/add.xhtml") >= 0) 
+                    && (ses != null && ses.getAttribute("officer") != null && ses.getAttribute("officer").equals("no"))) {
+                resp.sendRedirect(reqt.getContextPath() + "/faces/customer.xhtml");
+            } else if (reqURI.indexOf("/login.xhtml") >= 0
                     || (ses != null && ses.getAttribute("username") != null)
                     || reqURI.indexOf("/public/") >= 0
                     || reqURI.contains("javax.faces.resource")) {

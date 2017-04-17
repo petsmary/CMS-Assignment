@@ -13,6 +13,7 @@
     <class>entity.Gymrooms</class>
     <class>entity.Bbqs</class>
     <class>entity.Complaints</class>
+    <class>entity.Booking</class>
     <properties/>
   </persistence-unit>
 </persistence>

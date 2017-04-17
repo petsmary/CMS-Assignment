@@ -23,7 +23,7 @@ public class AccountsDAO {
     static final String PASS = "root";
     static final String TABLE = "accounts";
 
-    public static boolean login(String username, String password) {
+    public static String login(String username, String password) {
         Connection conn = null;
 
         try {
@@ -37,8 +37,9 @@ public class AccountsDAO {
             
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+                String c = rs.getString("acc_cust_id");
                 conn.close();
-                return true;
+                return c;
             }
         } catch (SQLException se) {
             //Handle errors for JDBC
@@ -47,7 +48,7 @@ public class AccountsDAO {
             //Handle errors for Class.forName
 
         }
-        return false;
+        return null;
     }
     
     public static boolean loginAdmin(String username, String password) {

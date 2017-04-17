@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
     <h:head lang="en">
         <meta charset="UTF-8"/>
@@ -34,7 +36,7 @@
         <!-- Custom css --> 
         <link href="css/custom.css" rel="stylesheet"/>
     </h:head>
-    <h:body class="no-trans">
+    <h:body class="no-trans">        
         <!-- scrollToTop -->
         <!-- ================ -->
         <div class="scrollToTop"><i class="icon-up-open-big"></i></div>
@@ -97,8 +99,9 @@
                                                     <li class="active"><a href="#banner">Home</a></li>
                                                     <li><a href="#about">About</a></li>
                                                     <li><a href="#facilities">Facilities</a></li>
-                                                    <li><a href="#">Username: #{session.getAttribute("username")}</a></li>
-                                                    <li><a href=""><h:commandButton action="#{login.logout()}" value="Logout" /></a></li>
+                                                    <li><a href="#complaint">Contact Us</a></li>
+                                                    <li><a href="">Username: #{session.getAttribute("username")}</a></li>
+                                                    <li><h:commandLink action="#{login.logout()}" style='text-decoration: none; color: white;' value="Logout" /></li>
                                                 </ul>
                                             </h:form>
                                         </div>
@@ -119,6 +122,57 @@
         </header>
         <!-- header end -->
 
+        <!-- Modal -->
+        <div class="modal fade" id="booking" tabindex="-1" role="dialog" aria-labelledby="login-label" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title text-center" id="booking-label">Welcome to Clubhouse</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h:form>
+                            <div class="modal-body">
+                                <center><h:panelGrid columns="2">
+                                        <h3>Booking facilities: 
+                                            <h:selectOneMenu id="facilitiesList" value="#{manage.facility}">
+                                                <f:selectItems value="#{manage.availableItems.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value}" />
+                                                <f:ajax event="change" execute="facilitiesList" render="nameList" />
+                                            </h:selectOneMenu></h3>
+                                        <h3>Booking date: 
+                                            <h:selectOneMenu id="nameList" value="#{manage.id}">
+                                                <f:selectItems value="#{manage.dateList.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value}" />                                                
+                                            </h:selectOneMenu></h3>
+                                        <h:outputScript rendered="#{manage.successful}">
+                                            alert("Book Complete");
+                                            #{manage.setFalse()}
+                                        </h:outputScript>
+                                        <h:outputScript rendered="#{manage.full}">
+                                            alert("Sorry, it is full.");
+                                            #{manage.setFalse()}
+                                        </h:outputScript>
+                                        <h:outputScript rendered="#{manage.check}">
+                                            alert("Sorry, you have booked the same time.");
+                                            #{manage.setFalse()}
+                                        </h:outputScript>
+                                    </h:panelGrid></center>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton class="btn btn-sm btn-default" action="#{manage.book}" value="Book" />
+                                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </h:form> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal end -->
+
         <!-- banner start -->
         <!-- ================ -->
         <div id="banner" class="banner">
@@ -129,7 +183,7 @@
                         <div class="col-md-8 col-md-offset-2 object-non-visible" data-animation-effect="fadeIn">
                             <h1 class="text-center">We are <span>Clubhouse</span></h1>
                             <p class="lead text-center">Providing Gym Room, Swimming Pool, Sauna Rooms, Study Rooms, and BBQ booking and usage services.</p>
-                            <center><a class="button lead" data-toggle="modal" data-target="#login">Start to booking</a></center>
+                            <center><a class="button lead" data-toggle="modal" data-target="#booking">Start to booking</a></center>
                         </div>
                     </div>
                 </div>
@@ -238,6 +292,47 @@
             </div>
         </div>
         <!-- section end -->       
+
+        <!-- footer start -->
+        <!-- ================ -->
+        <footer id="footer">
+
+            <!-- .footer start -->
+            <!-- ================ -->
+            <div class="footer section">
+                <div class="container">
+                    <h1 class="title text-center" id="complaint">Contact Us</h1>
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="footer-content">
+                                <p class="large">If you have any inquiry or complaints, please contact us.</p>                                
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="footer-content">
+                                <h:form id="footer-form">
+                                    <div class="form-group has-feedback">
+                                        <h:inputText id="name2" value="#{complaints.name}"  class="form-control" p:placeholder="Name"/>
+                                        <i class="fa fa-user form-control-feedback"></i>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <h:inputTextarea rows="8" value="#{complaints.message}" id="message2" class="form-control" p:placeholder="Message"/>
+                                        <i class="fa fa-pencil form-control-feedback"></i>
+                                    </div>
+                                    <h:commandButton value="Send" class="btn btn-default" action="#{complaints.send}"/>
+                                    <h:outputScript rendered="#{complaints.complaint}">
+                                        alert("You message have sent.");
+                                        #{complaints.setComplaint(false)}
+                                    </h:outputScript>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- .footer end -->
 
         <!-- footer start -->
         <!-- ================ -->

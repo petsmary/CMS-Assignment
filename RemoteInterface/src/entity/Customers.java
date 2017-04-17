@@ -19,6 +19,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -41,39 +43,52 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Customers.findByLastUpdate", query = "SELECT c FROM Customers c WHERE c.lastUpdate = :lastUpdate")})
 public class Customers implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "comCustId")
-    private Collection<Complaints> complaintsCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 5)
     @Column(name = "cust_id")
     private String custId;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "first_name")
     private String firstName;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "last_name")
     private String lastName;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 60)
     @Column(name = "address")
     private String address;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "active")
     private boolean active;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "create_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "last_update")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "schCustId")
     private Collection<Booking> bookingCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "comCustId")
+    private Collection<Complaints> complaintsCollection;
     @OneToMany(mappedBy = "accCustId")
     private Collection<Accounts> accountsCollection;
 
@@ -169,6 +184,15 @@ public class Customers implements Serializable {
     }
 
     @XmlTransient
+    public Collection<Complaints> getComplaintsCollection() {
+        return complaintsCollection;
+    }
+
+    public void setComplaintsCollection(Collection<Complaints> complaintsCollection) {
+        this.complaintsCollection = complaintsCollection;
+    }
+
+    @XmlTransient
     public Collection<Accounts> getAccountsCollection() {
         return accountsCollection;
     }
@@ -200,15 +224,6 @@ public class Customers implements Serializable {
     @Override
     public String toString() {
         return "entity.Customers[ custId=" + custId + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Complaints> getComplaintsCollection() {
-        return complaintsCollection;
-    }
-
-    public void setComplaintsCollection(Collection<Complaints> complaintsCollection) {
-        this.complaintsCollection = complaintsCollection;
     }
     
 }

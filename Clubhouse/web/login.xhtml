@@ -179,13 +179,13 @@
                         <h:form>
                             <div class="modal-body">
                                 <center><h:panelGrid columns="2">
-                                        <h3>Login Name: <h:inputText id="username" value="#{login.username}" /></h3>
-                                        <h3>Password: <h:inputSecret id="password" value="#{login.password}"/></h3>
-                                        <h3>Confirm Password: <h:inputSecret id="cpassword" value="#{login.password}"/></h3>
-                                        <h3>First Name: <h:inputText id="fname" value="#{login.password}"/></h3>
-                                        <h3>Last Name: <h:inputText id="lname" value="#{login.password}"/></h3>
-                                        <h3>Email Address: <h:inputText id="email" value="#{login.password}"/></h3>
-                                        <h3>Mailing Address: <h:inputText id="address" value="#{login.password}"/></h3>
+                                        <h3>Login Name: <h:inputText id="username" value="#{registry.login_name}" /></h3>
+                                        <h3>Password: <h:inputSecret id="password" value="#{registry.password}"/></h3>
+                                        <h3>Confirm Password: <h:inputSecret id="cpassword" value="#{registry.xpassword}"/></h3>
+                                        <h3>First Name: <h:inputText id="fname" value="#{registry.firstname}"/></h3>
+                                        <h3>Last Name: <h:inputText id="lname" value="#{registry.lastname}"/></h3>
+                                        <h3>Email Address: <h:inputText id="email" value="#{registry.email}"/></h3>
+                                        <h3>Mailing Address: <h:inputText id="address" value="#{registry.address}"/></h3>
                                     </h:panelGrid>
                                 </center>
                                 <div class="row">
@@ -194,8 +194,20 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <h:commandButton class="btn btn-sm btn-default" action="#{login.valid()}" value="Sign Up" />
+                                <h:commandButton class="btn btn-sm btn-default" action="#{registry.signup()}" value="Sign Up" />
                                 <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                                <h:outputScript rendered="#{registry.successful}" >
+                                    alert("Sign up successful.");
+                                    #{registry.setFalse()};
+                                </h:outputScript>
+                                <h:outputScript rendered="#{registry.error}" >
+                                    alert("Sign up error.");
+                                    #{registry.setFalse()};
+                                </h:outputScript>
+                                <h:outputScript rendered="#{registry.passwordError}" >
+                                    alert("Please input the same password.");
+                                    #{registry.setFalse()};
+                                </h:outputScript>
                             </div>
                         </h:form>
                     </div>                

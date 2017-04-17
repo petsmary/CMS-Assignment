@@ -44,9 +44,12 @@ public class LoginBean implements Serializable {
     }
 
     public String valid() {
-        if (AccountsDAO.login(username, password)) {
+        String userid = AccountsDAO.login(username, password);
+        if (userid != null) {
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", username);
+            session.setAttribute("userid", userid);
+            session.setAttribute("officer", "no");
             return "customer";
         } else {
             return "error";
@@ -57,9 +60,10 @@ public class LoginBean implements Serializable {
         if (AccountsDAO.loginAdmin(username, password)) {
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", username);
+            session.setAttribute("officer", "yes");
             return "admin";
         } else {
-            return "error";
+            return "adminlogin";
         }
     }
 
@@ -67,5 +71,11 @@ public class LoginBean implements Serializable {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
         return "login";
+    }
+    
+    public String logout2() {
+        HttpSession session = SessionUtils.getSession();
+        session.invalidate();
+        return "adminlogin.xhtml";
     }
 }
