@@ -38,6 +38,7 @@
                     <ul id="active" class="nav navbar-nav side-nav">
                         <li class="selected"><h:outputLink value="admin.xhtml"><i class="fa fa-bullseye"></i> Database</h:outputLink></li>
                         <li><h:outputLink value="add.xhtml"><i class="fa fa-list-ol"></i> Add Facilites</h:outputLink></li>
+                        <li><h:outputLink value="update.xhtml"><i class="fa fa-list-ul"></i> Update Booking</h:outputLink></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right navbar-user">
                         <li class="dropdown messages-dropdown">
@@ -162,6 +163,7 @@
                                             <th>BBQ</th>
                                             <th>BBQ location</th>
                                             <th>BBQ Date</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -171,6 +173,7 @@
                                             <th>BBQ</th>
                                             <th>BBQ location</th>
                                             <th>BBQ Date</th>
+                                            <th>Status</th>
                                         </tr>
                                     </tfoot>
                                     <ui:repeat value="#{show.showBbqsBooking}" var="item">
@@ -181,6 +184,7 @@
                                                 <td>#{item.schBbqId.bbqName}</td>
                                                 <td>#{item.schBbqId.location}</td>
                                                 <td>#{item.schBbqId.date}, #{item.schBbqId.open.hours}:00 to #{item.schBbqId.end.hours}:00</td>
+                                                <td>#{item.status}</td>
                                             </tr>
                                         </tbody>
                                     </ui:repeat>
@@ -204,6 +208,7 @@
                                             <th>Gym Room</th>
                                             <th>Gym Room location</th>
                                             <th>Gym Room Date</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -213,6 +218,7 @@
                                             <th>Gym Room</th>
                                             <th>Gym Room location</th>
                                             <th>Gym Room Date</th>
+                                            <th>Status</th>
                                         </tr>
                                     </tfoot>
                                     <ui:repeat value="#{show.showGymBooking}" var="item">
@@ -223,6 +229,7 @@
                                                 <td>#{item.schGymId.gymName}</td>
                                                 <td>#{item.schGymId.location}</td>
                                                 <td>#{item.schGymId.date}, #{item.schGymId.open.hours}:00 to #{item.schGymId.end.hours}:00</td>
+                                                <td>#{item.status}</td>
                                             </tr>
                                         </tbody>
                                     </ui:repeat>
@@ -246,6 +253,7 @@
                                             <th>Swimming Pool</th>
                                             <th>Swimming Pool location</th>
                                             <th>Swimming Pool Date</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -255,6 +263,7 @@
                                             <th>Swimming Pool</th>
                                             <th>Swimming Pool location</th>
                                             <th>Swimming Pool Date</th>
+                                            <th>Status</th>
                                         </tr>
                                     </tfoot>
                                     <ui:repeat value="#{show.showPoolBooking}" var="item">
@@ -265,6 +274,7 @@
                                                 <td>#{item.schPoolId.poolName}</td>
                                                 <td>#{item.schPoolId.location}</td>
                                                 <td>#{item.schPoolId.date}, #{item.schPoolId.open.hours}:00 to #{item.schPoolId.end.hours}:00</td>
+                                                <td>#{item.status}</td>
                                             </tr>
                                         </tbody>
                                     </ui:repeat>
@@ -288,6 +298,7 @@
                                             <th>Sauna Room</th>
                                             <th>Sauna Room location</th>
                                             <th>Sauna Room Date</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -297,6 +308,7 @@
                                             <th>Sauna Room</th>
                                             <th>Sauna Room location</th>
                                             <th>Sauna Room Date</th>
+                                            <th>Status</th>
                                         </tr>
                                     </tfoot>
                                     <ui:repeat value="#{show.showSaunaBooking}" var="item">
@@ -307,6 +319,7 @@
                                                 <td>#{item.schSaunaId.saunaName}</td>
                                                 <td>#{item.schSaunaId.location}</td>
                                                 <td>#{item.schSaunaId.date}, #{item.schSaunaId.open.hours}:00 to #{item.schSaunaId.end.hours}:00</td>
+                                                <td>#{item.status}</td>
                                             </tr>
                                         </tbody>
                                     </ui:repeat>
@@ -330,6 +343,7 @@
                                             <th>Study Room</th>
                                             <th>Study Room location</th>
                                             <th>Study Room Date</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -339,6 +353,7 @@
                                             <th>Study Room</th>
                                             <th>Study Room location</th>
                                             <th>Study Room Date</th>
+                                            <th>Status</th>
                                         </tr>
                                     </tfoot>
                                     <ui:repeat value="#{show.showStudyBooking}" var="item">
@@ -349,6 +364,7 @@
                                                 <td>#{item.schStudyId.studyName}</td>
                                                 <td>#{item.schStudyId.location}</td>
                                                 <td>#{item.schStudyId.date}, #{item.schStudyId.open.hours}:00 to #{item.schStudyId.end.hours}:00</td>
+                                                <td>#{item.status}</td>
                                             </tr>
                                         </tbody>
                                     </ui:repeat>

@@ -5,10 +5,8 @@
  */
 package bean;
 
-import ejb.AccountsFacadeRemote;
 import ejb.BbqsFacadeRemote;
 import ejb.BookingFacadeRemote;
-import ejb.ComplaintsFacadeRemote;
 import ejb.CustomersFacadeRemote;
 import ejb.GymroomsFacadeRemote;
 import ejb.SaunaroomsFacadeRemote;

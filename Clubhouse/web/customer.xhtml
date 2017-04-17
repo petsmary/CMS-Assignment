@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:head lang="en">
         <meta charset="UTF-8"/>
@@ -99,8 +100,9 @@
                                                     <li class="active"><a href="#banner">Home</a></li>
                                                     <li><a href="#about">About</a></li>
                                                     <li><a href="#facilities">Facilities</a></li>
+                                                    <li><a href="#history">History</a></li>
                                                     <li><a href="#complaint">Contact Us</a></li>
-                                                    <li><a href="">Username: #{session.getAttribute("username")}</a></li>
+                                                    <li><a href="">#{session.getAttribute("username")}</a></li>
                                                     <li><h:commandLink action="#{login.logout()}" style='text-decoration: none; color: white;' value="Logout" /></li>
                                                 </ul>
                                             </h:form>
@@ -292,6 +294,110 @@
             </div>
         </div>
         <!-- section end -->       
+
+        <!-- section start -->
+        <!-- ================ -->
+        <div class="section">
+            <div class="container" data-animation-effect="fadeIn">
+                <h1 id="history"  class="text-center title">Your History</h1>
+                <div class="separator"></div>
+                <br/>			
+                <div class="row object-non-visible" data-animation-effect="fadeIn">
+                    <div class="col-md-12">
+                        #{history.getList()}
+                        <!-- isotope filters end -->
+                        <!-- portfolio items start -->
+
+                        <table cellspacing="0" width="100%" >
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Name</th>
+                                    <th>location</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Booking ID</th>
+                                    <th>Name</th>
+                                    <th>location</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </tfoot>
+                            <ui:repeat value="#{history.bbqList}" var="item">
+                                <div class="isotope-item bbq">
+                                    <tbody>
+                                        <tr>
+                                            <td>#{item.bookingId}</td>
+                                            <td>#{item.schBbqId.bbqName}</td>
+                                            <td>#{item.schBbqId.location}</td>
+                                            <td>#{item.schBbqId.date}, #{item.schBbqId.open.hours}:00 to #{item.schBbqId.end.hours}:00</td>
+                                            <td>#{item.status}</td>
+                                        </tr>
+                                    </tbody>
+                                </div>
+                            </ui:repeat>
+                            <ui:repeat value="#{history.gymList}" var="item">
+                                <div class="isotope-item gym">
+                                    <tbody>
+                                        <tr>
+                                            <td>#{item.bookingId}</td>
+                                            <td>#{item.schGymId.gymName}</td>
+                                            <td>#{item.schGymId.location}</td>
+                                            <td>#{item.schGymId.date}, #{item.schGymId.open.hours}:00 to #{item.schGymId.end.hours}:00</td>
+                                            <td>#{item.status}</td>
+                                        </tr>
+                                    </tbody>
+                                </div>
+                            </ui:repeat>
+                            <ui:repeat value="#{history.poolList}" var="item">
+                                <div class="isotope-item pool">
+                                    <tbody>
+                                        <tr>
+                                            <td>#{item.bookingId}</td>
+                                            <td>#{item.schPoolId.poolName}</td>
+                                            <td>#{item.schPoolId.location}</td>
+                                            <td>#{item.schPoolId.date}, #{item.schPoolId.open.hours}:00 to #{item.schPoolId.end.hours}:00</td>
+                                            <td>#{item.status}</td>
+                                        </tr>
+                                    </tbody>
+                                </div>
+                            </ui:repeat>
+                            <ui:repeat value="#{history.saunaList}" var="item">
+                                <div class="isotope-item sauna">
+                                    <tbody>
+                                        <tr>
+                                            <td>#{item.bookingId}</td>
+                                            <td>#{item.schSaunaId.saunaName}</td>
+                                            <td>#{item.schSaunaId.location}</td>
+                                            <td>#{item.schSaunaId.date}, #{item.schSaunaId.open.hours}:00 to #{item.schSaunaId.end.hours}:00</td>
+                                            <td>#{item.status}</td>
+                                        </tr>
+                                    </tbody>
+                                </div>
+                            </ui:repeat>
+                            <ui:repeat value="#{history.studyList}" var="item">
+                                <div class="isotope-item study">
+                                    <tbody>
+                                        <tr>
+                                            <td>#{item.bookingId}</td>
+                                            <td>#{item.schStudyId.studyName}</td>
+                                            <td>#{item.schStudyId.location}</td>
+                                            <td>#{item.schStudyId.date}, #{item.schStudyId.open.hours}:00 to #{item.schStudyId.end.hours}:00</td>
+                                            <td>#{item.status}</td>
+                                        </tr>
+                                    </tbody>
+                                </div>
+                            </ui:repeat>
+                        </table>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- section end -->
 
         <!-- footer start -->
         <!-- ================ -->
