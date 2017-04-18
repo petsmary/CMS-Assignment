@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+        <title>CMS - BBQ</title>
+
+    </h:head>
+    <h:body>
+
+        #{bBQBean.username}
+        <h:outputLabel value="#{bBQBean.result}"/>
+
+        <h:form id="bbq">
+
+            <h1>Booking BBQ</h1>
+            <br/>
+            <h:outputLabel value="Number of people: "/>
+            <h:selectOneMenu id="people_num" value="#{bBQBean.peopleNum}"  >
+                <f:selectItem itemValue = "4" itemLabel = "4"/>
+                <f:selectItem itemValue = "8" itemLabel = "8"/>
+                <f:selectItem itemValue = "12" itemLabel = "12"/>
+            </h:selectOneMenu>
+            <br/>
+            <h:outputLabel value="Time: "/>
+            <h:selectOneMenu id="time" value="#{bBQBean.time}" >
+                <f:selectItem itemValue = "Morning" itemLabel = "09:00-14:00 (Morning)" />
+                <f:selectItem itemValue = "Afternoon" itemLabel = "14:00-18:00 (Afternoon)" />
+                <f:selectItem itemValue = "Night" itemLabel = "18:00-22:00 (Night)" />
+            </h:selectOneMenu>
+            <br/>
+            <h:outputLabel value="Date: "/>
+            <h:selectOneMenu id="date" value="#{bBQBean.date}" >
+
+                <f:selectItem itemValue = "2017-04-20" itemLabel = "2017-04-20"/>
+                <f:selectItem itemValue = "2017-04-21" itemLabel = "2017-04-21"/>
+                <f:selectItem itemValue = "2017-04-22" itemLabel = "2017-04-22"/>
+                <f:convertDateTime for="date" pattern="yyyy-MM-dd" />
+            </h:selectOneMenu>
+
+            <h:commandButton id="book" value="Book" action="#{bBQBean.bookResult()}" />
+
+        </h:form>
+        <ui:repeat var="item" value="#{bBQBean.list}" >
+            #{item}<br/>
+        </ui:repeat>
+
+
+    </h:body>
+</html>
+

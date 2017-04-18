@@ -76,3 +76,6 @@ Temporary Items
 /WebApplication1/nbproject/private/
 /WebApplication1/build/
 /WebApplication1/dist/
+/test/nbproject/private/
+/test/build/
+/test/dist/
