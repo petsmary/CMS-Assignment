@@ -58,11 +58,30 @@ public class LoginBean implements Serializable {
             List<Accounts> list = accountsFacade.findAll();
             for (int i = 0; i < list.size(); i++) {
                 Accounts account = list.get(i);
-                if (account.getLoginName().equals(username) && account.getPassword().equals(password)) {
+                if (account.getLoginName().equals(username) && account.getPassword().equals(password) && !account.getIsOfficer()) {
                     HttpSession session = SessionUtils.getSession();
                     session.setAttribute("username", username);
                     session.setAttribute("userid", account.getAccCustId().getCustId());
                     session.setAttribute("officer", "no");
+                    return "customer";
+                }
+            }
+        } catch (Exception ex) {
+            return "error";
+        }
+        return "error";
+    }
+    
+    public String validAdmin() {
+        try {
+            List<Accounts> list = accountsFacade.findAll();
+            for (int i = 0; i < list.size(); i++) {
+                Accounts account = list.get(i);
+                if (account.getLoginName().equals(username) && account.getPassword().equals(password) && account.getIsOfficer()) {
+                    HttpSession session = SessionUtils.getSession();
+                    session.setAttribute("username", username);
+                    session.setAttribute("userid", account.getAccCustId().getCustId());
+                    session.setAttribute("officer", "yes");
                     return "customer";
                 }
             }
