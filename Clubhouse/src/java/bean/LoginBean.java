@@ -5,10 +5,14 @@
  */
 package bean;
 
-import dao.AccountsDAO;
+import ejb.AccountsFacadeRemote;
+import ejb.CustomersFacadeRemote;
+import entity.Accounts;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.http.HttpSession;
 import util.SessionUtils;
 
@@ -16,9 +20,15 @@ import util.SessionUtils;
  *
  * @author MingWai
  */
-@Named(value = "login")
+@Named(value = "loginR")
 @SessionScoped
 public class LoginBean implements Serializable {
+
+    @EJB
+    private CustomersFacadeRemote customersFacade;
+
+    @EJB
+    private AccountsFacadeRemote accountsFacade;
 
     private String username;
     private String password;
@@ -44,38 +54,22 @@ public class LoginBean implements Serializable {
     }
 
     public String valid() {
-        String userid = AccountsDAO.login(username, password);
-        if (userid != null) {
-            HttpSession session = SessionUtils.getSession();
-            session.setAttribute("username", username);
-            session.setAttribute("userid", userid);
-            session.setAttribute("officer", "no");
-            return "customer";
-        } else {
+        try {
+            List<Accounts> list = accountsFacade.findAll();
+            for (int i = 0; i < list.size(); i++) {
+                Accounts account = list.get(i);
+                if (account.getLoginName().equals(username) && account.getPassword().equals(password)) {
+                    HttpSession session = SessionUtils.getSession();
+                    session.setAttribute("username", username);
+                    session.setAttribute("userid", account.getAccCustId().getCustId());
+                    session.setAttribute("officer", "no");
+                    return "customer";
+                }
+            }
+        } catch (Exception ex) {
             return "error";
         }
-    }
-    
-    public String validAdmin() {
-        if (AccountsDAO.loginAdmin(username, password)) {
-            HttpSession session = SessionUtils.getSession();
-            session.setAttribute("username", username);
-            session.setAttribute("officer", "yes");
-            return "admin";
-        } else {
-            return "adminlogin";
-        }
+        return "error";
     }
 
-    public String logout() {
-        HttpSession session = SessionUtils.getSession();
-        session.invalidate();
-        return "login";
-    }
-    
-    public String logout2() {
-        HttpSession session = SessionUtils.getSession();
-        session.invalidate();
-        return "adminlogin.xhtml";
-    }
 }

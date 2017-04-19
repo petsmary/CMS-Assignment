@@ -193,15 +193,15 @@ public class ManageBean implements Serializable {
             if (type.equals(FACILITES[0])) {
                 int i = bbqsFacade.findAll().size();
                 String bbqId = "Q0001";
-                if (i < 10) {
+                if (i < 9) {
                     bbqId = "Q000" + (i + 1);
-                } else if (i >= 10 && i < 100) {
+                } else if (i >= 9 && i < 99) {
                     bbqId = "Q00" + (i + 1);
                 }
-                if (i >= 100 && i < 1000) {
+                if (i >= 99 && i < 999) {
                     bbqId = "Q0" + (i + 1);
                 }
-                if (i >= 1000 && i < 10000) {
+                if (i >= 999 && i < 9999) {
                     bbqId = "Q" + (i + 1);
                 }
                 Bbqs bbq = new Bbqs(bbqId, nameadd, location, sdf.parse(open), sdf.parse(end), limit, date, 0);
@@ -209,15 +209,15 @@ public class ManageBean implements Serializable {
             } else if (facility.equals(FACILITES[1])) {
                 int i = gymroomsFacade.findAll().size();
                 String bbqId = "G0001";
-                if (i < 10) {
+                if (i < 9) {
                     bbqId = "G000" + (i + 1);
-                } else if (i >= 10 && i < 100) {
+                } else if (i >= 9 && i < 99) {
                     bbqId = "G00" + (i + 1);
                 }
-                if (i >= 100 && i < 1000) {
+                if (i >= 99 && i < 999) {
                     bbqId = "G0" + (i + 1);
                 }
-                if (i >= 1000 && i < 10000) {
+                if (i >= 999 && i < 9999) {
                     bbqId = "G" + (i + 1);
                 }
                 Gymrooms bbq = new Gymrooms(bbqId, nameadd, location, sdf.parse(open), sdf.parse(end), limit, date, 0);
@@ -225,15 +225,15 @@ public class ManageBean implements Serializable {
             } else if (facility.equals(FACILITES[2])) {
                 int i = swimmingpoolsFacade.findAll().size();
                 String bbqId = "P0001";
-                if (i < 10) {
+                if (i < 9) {
                     bbqId = "P000" + (i + 1);
-                } else if (i >= 10 && i < 100) {
+                } else if (i >= 9 && i < 99) {
                     bbqId = "P00" + (i + 1);
                 }
-                if (i >= 100 && i < 1000) {
+                if (i >= 99 && i < 999) {
                     bbqId = "P0" + (i + 1);
                 }
-                if (i >= 1000 && i < 10000) {
+                if (i >= 999 && i < 9999) {
                     bbqId = "P" + (i + 1);
                 }
                 Swimmingpools bbq = new Swimmingpools(bbqId, nameadd, location, sdf.parse(open), sdf.parse(end), limit, date, 0);
@@ -241,15 +241,15 @@ public class ManageBean implements Serializable {
             } else if (facility.equals(FACILITES[3])) {
                 int i = saunaroomsFacade.findAll().size();
                 String bbqId = "A0001";
-                if (i < 10) {
+                if (i < 9) {
                     bbqId = "A000" + (i + 1);
-                } else if (i >= 10 && i < 100) {
+                } else if (i >= 9 && i < 99) {
                     bbqId = "A00" + (i + 1);
                 }
-                if (i >= 100 && i < 1000) {
+                if (i >= 99 && i < 999) {
                     bbqId = "A0" + (i + 1);
                 }
-                if (i >= 1000 && i < 10000) {
+                if (i >= 999 && i < 9999) {
                     bbqId = "A" + (i + 1);
                 }
                 Saunarooms bbq = new Saunarooms(bbqId, nameadd, location, sdf.parse(open), sdf.parse(end), limit, date, 0);
@@ -257,15 +257,15 @@ public class ManageBean implements Serializable {
             } else if (facility.equals(FACILITES[4])) {
                 int i = studyroomsFacade.findAll().size();
                 String bbqId = "T0001";
-                if (i < 10) {
+                if (i < 9) {
                     bbqId = "T000" + (i + 1);
-                } else if (i >= 10 && i < 100) {
+                } else if (i >= 9 && i < 99) {
                     bbqId = "T00" + (i + 1);
                 }
-                if (i >= 100 && i < 1000) {
+                if (i >= 99 && i < 999) {
                     bbqId = "T0" + (i + 1);
                 }
-                if (i >= 1000 && i < 10000) {
+                if (i >= 999 && i < 9999) {
                     bbqId = "T" + (i + 1);
                 }
                 Studyrooms bbq = new Studyrooms(bbqId, nameadd, location, sdf.parse(open), sdf.parse(end), limit, date, 0);
@@ -317,15 +317,15 @@ public class ManageBean implements Serializable {
             if (bbq.getLimited() > bbq.getTaken() && check) {
                 int i = bookingFacade.findAll().size();
                 Booking booking = new Booking();
-                if (i < 10) {
+                if (i < 9) {
                     booking = new Booking("B000" + (i + 1), "booked");
-                } else if (i >= 10 && i < 100) {
+                } else if (i >= 9 && i < 99) {
                     booking = new Booking("B00" + (i + 1), "booked");
                 }
-                if (i >= 100 && i < 1000) {
+                if (i >= 99 && i < 999) {
                     booking = new Booking("B0" + (i + 1), "booked");
                 }
-                if (i >= 1000 && i < 10000) {
+                if (i >= 999 && i < 9999) {
                     booking = new Booking("B" + (i + 1), "booked");
                 }
                 booking.setSchBbqId(bbq);
@@ -354,15 +354,15 @@ public class ManageBean implements Serializable {
                 gymroomsFacade.edit(bbq);
                 int i = bookingFacade.findAll().size();
                 Booking booking = new Booking();
-                if (i < 10) {
+                if (i < 9) {
                     booking = new Booking("B000" + (i + 1), "booked");
-                } else if (i >= 10 && i < 100) {
+                } else if (i >= 9 && i < 99) {
                     booking = new Booking("B00" + (i + 1), "booked");
                 }
-                if (i >= 100 && i < 1000) {
+                if (i >= 99 && i < 999) {
                     booking = new Booking("B0" + (i + 1), "booked");
                 }
-                if (i >= 1000 && i < 10000) {
+                if (i >= 999 && i < 9999) {
                     booking = new Booking("B" + (i + 1), "booked");
                 }
                 booking.setSchGymId(bbq);
@@ -388,15 +388,15 @@ public class ManageBean implements Serializable {
                 swimmingpoolsFacade.edit(bbq);
                 int i = bookingFacade.findAll().size();
                 Booking booking = new Booking();
-                if (i < 10) {
+                if (i < 9) {
                     booking = new Booking("B000" + (i + 1), "booked");
-                } else if (i >= 10 && i < 100) {
+                } else if (i >= 9 && i < 99) {
                     booking = new Booking("B00" + (i + 1), "booked");
                 }
-                if (i >= 100 && i < 1000) {
+                if (i >= 99 && i < 999) {
                     booking = new Booking("B0" + (i + 1), "booked");
                 }
-                if (i >= 1000 && i < 10000) {
+                if (i >= 999 && i < 9999) {
                     booking = new Booking("B" + (i + 1), "booked");
                 }
                 booking.setSchPoolId(bbq);
@@ -422,15 +422,15 @@ public class ManageBean implements Serializable {
                 saunaroomsFacade.edit(bbq);
                 int i = bookingFacade.findAll().size();
                 Booking booking = new Booking();
-                if (i < 10) {
+                if (i < 9) {
                     booking = new Booking("B000" + (i + 1), "booked");
-                } else if (i >= 10 && i < 100) {
+                } else if (i >= 9 && i < 99) {
                     booking = new Booking("B00" + (i + 1), "booked");
                 }
-                if (i >= 100 && i < 1000) {
+                if (i >= 99 && i < 999) {
                     booking = new Booking("B0" + (i + 1), "booked");
                 }
-                if (i >= 1000 && i < 10000) {
+                if (i >= 999 && i < 9999) {
                     booking = new Booking("B" + (i + 1), "booked");
                 }
                 booking.setSchSaunaId(bbq);
@@ -456,15 +456,15 @@ public class ManageBean implements Serializable {
                 studyroomsFacade.edit(bbq);
                 int i = bookingFacade.findAll().size();
                 Booking booking = new Booking();
-                if (i < 10) {
+                if (i < 9) {
                     booking = new Booking("B000" + (i + 1), "booked");
-                } else if (i >= 10 && i < 100) {
+                } else if (i >= 9 && i < 99) {
                     booking = new Booking("B00" + (i + 1), "booked");
                 }
-                if (i >= 100 && i < 1000) {
+                if (i >= 99 && i < 999) {
                     booking = new Booking("B0" + (i + 1), "booked");
                 }
-                if (i >= 1000 && i < 10000) {
+                if (i >= 999 && i < 9999) {
                     booking = new Booking("B" + (i + 1), "booked");
                 }
                 booking.setSchStudyId(bbq);

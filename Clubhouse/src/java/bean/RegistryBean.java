@@ -104,16 +104,16 @@ public class RegistryBean implements Serializable {
             if (password.equals(xpassword)) {
                 int i = customersFacade.findAll().size();
                 String custId = "C0001";
-                if (i < 10) {
+                if (i < 9) {
                     custId = "C000" + (i + 1);
-                } else if (i >= 10 && i < 100) {
-                    custId = "C00" + (i + 1);
+                } else if (i >= 9 && i < 99) {
+                    custId = "C00" + (i + 2);
                 }
-                if (i >= 100 && i < 1000) {
-                    custId = "C0" + (i + 1);
+                if (i >= 99 && i < 999) {
+                    custId = "C0" + (i + 3);
                 }
-                if (i >= 1000 && i < 10000) {
-                    custId = "C" + (i + 1);
+                if (i >= 999 && i < 9999) {
+                    custId = "C" + (i + 4);
                 }
                 Customers customer = new Customers(custId, firstname, lastname, email, address, true, new Date(), new Date());
                 customersFacade.create(customer);
