@@ -386,6 +386,7 @@
                                             <th>Complaint ID</th>
                                             <th>Message</th>
                                             <th>Comment</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -393,6 +394,7 @@
                                             <th>Complaint ID</th>
                                             <th>Message</th>
                                             <th>Comment</th>
+                                            <th></th>
                                         </tr>
                                     </tfoot>
                                     <ui:repeat value="#{show.showComplaints}" var="item">
@@ -401,6 +403,13 @@
                                                 <td>#{item.comId}</td>
                                                 <td>#{item.message}</td>
                                                 <td>#{item.comment}</td>
+                                                <h:form>                                                                                    
+                                                    <td align="right">
+                                                        <h:inputTextarea id="comment" rows="4" style="background-color: black" value="#{show.comment}"/>
+                                                        <h:commandButton style="background-color: black" value="add comment">
+                                                            <f:ajax event="click" execute="comment" render="@all" listener="#{show.addComment(item.comId)}"/>
+                                                        </h:commandButton></td>
+                                                </h:form>
                                             </tr>
                                         </tbody>
                                     </ui:repeat>

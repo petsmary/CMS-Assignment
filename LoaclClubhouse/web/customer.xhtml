@@ -412,7 +412,19 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="footer-content">
-                                <p class="large">If you have any inquiry or complaints, please contact us.</p>                                
+                                <p class="large">If you have any inquiry or complaints, please contact us.</p>     
+                                <table cellspacing="0" width="100%">
+                                    <tr>
+                                        <th>Message</th>
+                                        <th>Comment</th>
+                                    </tr>
+                                    <ui:repeat value="#{complaints.list}" var="item">
+                                        <tr>
+                                            <td>#{item.message}</td>
+                                            <td>#{item.comment}</td>
+                                        </tr>
+                                    </ui:repeat>
+                                </table>
                             </div>
                         </div>
                         <div class="col-sm-6">

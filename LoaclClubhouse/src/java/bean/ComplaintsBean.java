@@ -11,6 +11,8 @@ import entity.Complaints;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import util.SessionUtils;
 
@@ -60,6 +62,18 @@ public class ComplaintsBean implements Serializable {
 
     public void setComplaint(boolean complaint) {
         this.complaint = complaint;
+    }
+    
+    public ArrayList<Complaints> getList() {
+        List<Complaints> list = complaintsFacade.findAll();
+        ArrayList<Complaints> complaints = new ArrayList<Complaints>();
+        for (int i = 0; i < list.size(); i++) {
+            Complaints e = list.get(i);
+            if(e.getComCustId().getCustId().equals(SessionUtils.getUserId())) {
+                complaints.add(e);
+            }
+        }
+        return complaints;
     }
     
     public void send() {

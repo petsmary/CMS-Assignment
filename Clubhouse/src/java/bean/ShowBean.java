@@ -29,6 +29,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -64,11 +67,13 @@ public class ShowBean implements Serializable {
 
     @EJB
     private CustomersFacadeRemote customersFacade;
-    
+
+    private Integer comid;
+    private String comment;
+
     public ShowBean() {
     }
-    
-    
+
     public List<Customers> getShowCustomer() {
         return customersFacade.findAll();
     }
@@ -145,6 +150,36 @@ public class ShowBean implements Serializable {
             }
         }
         return accounts;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Integer getComid() {
+        return comid;
+    }
+
+    public void setComid(Integer comid) {
+        this.comid = comid;
+    }
+
+    public void addComment(Integer comid) {
+        this.comid = comid;
+        Complaints c = complaintsFacade.find(comid);
+        c.setComment(comment);
+        comment = "";
+        complaintsFacade.edit(c);
+        try {
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
+        } catch (Exception ex) {
+
+        }
     }
 
     public List<Gymrooms> getShowGymrooms() {
