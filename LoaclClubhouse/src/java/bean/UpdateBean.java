@@ -117,32 +117,37 @@ public class UpdateBean implements Serializable {
     }
 
     public void change() {
-        Booking b = bookingFacade.find(bookid);
-        b.setStatus(status);
-        if (b.getSchBbqId() != null && status.equalsIgnoreCase("used")) {
-            Bbqs bbq = b.getSchBbqId();
-            bbq.setTaken(bbq.getTaken() - 1);
-            bbqsFacade.edit(bbq);
-        } else if (b.getSchGymId() != null && status.equalsIgnoreCase("used")) {
-            Gymrooms gym = b.getSchGymId();
-            gym.setTaken(gym.getTaken() - 1);
-            gymroomsFacade.edit(gym);
-        } else if (b.getSchPoolId() != null && status.equalsIgnoreCase("used")) {
-            Swimmingpools pool = b.getSchPoolId();
-            pool.setTaken(pool.getTaken() - 1);
-            swimmingpoolsFacade.edit(pool);
-        } else if (b.getSchSaunaId() != null && status.equalsIgnoreCase("used")) {
-            Saunarooms sauna = b.getSchSaunaId();
-            sauna.setTaken(sauna.getTaken() - 1);
-            saunaroomsFacade.edit(sauna);
-        } else if (b.getSchStudyId() != null && status.equalsIgnoreCase("used")) {
-            Studyrooms study = b.getSchStudyId();
-            study.setTaken(study.getTaken() - 1);
-            studyroomsFacade.edit(study);
+        try {
+            Booking b = bookingFacade.find(bookid);
+            b.setStatus(status);
+            if (b.getSchBbqId() != null && status.equalsIgnoreCase("cancel")) {
+                Bbqs bbq = b.getSchBbqId();
+                bbq.setTaken(bbq.getTaken() - 1);
+                bbqsFacade.edit(bbq);
+            } else if (b.getSchGymId() != null && status.equalsIgnoreCase("cancel")) {
+                Gymrooms gym = b.getSchGymId();
+                gym.setTaken(gym.getTaken() - 1);
+                gymroomsFacade.edit(gym);
+            } else if (b.getSchPoolId() != null && status.equalsIgnoreCase("cancel")) {
+                Swimmingpools pool = b.getSchPoolId();
+                pool.setTaken(pool.getTaken() - 1);
+                swimmingpoolsFacade.edit(pool);
+            } else if (b.getSchSaunaId() != null && status.equalsIgnoreCase("cancel")) {
+                Saunarooms sauna = b.getSchSaunaId();
+                sauna.setTaken(sauna.getTaken() - 1);
+                saunaroomsFacade.edit(sauna);
+            } else if (b.getSchStudyId() != null && status.equalsIgnoreCase("cancel")) {
+                Studyrooms study = b.getSchStudyId();
+                study.setTaken(study.getTaken() - 1);
+                studyroomsFacade.edit(study);
+            }
+            bookingFacade.edit(b);
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Update Complete"));
+        } catch (Exception ex) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Cannot Update"));
         }
-        bookingFacade.edit(b);
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Update Complete"));
     }
 
 }

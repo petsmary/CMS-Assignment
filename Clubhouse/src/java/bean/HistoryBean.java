@@ -76,7 +76,9 @@ public class HistoryBean implements Serializable {
         this.studyList = studyList;
     }
 
+    //get the list of booking history of login customer
     public void getList() {
+        //clear the ArrayList
         bbqList.clear();
         gymList.clear();
         poolList.clear();
@@ -86,6 +88,7 @@ public class HistoryBean implements Serializable {
             List<Booking> booking = bookingFacade.findAll();
             for (int i = 0; i < booking.size(); i++) {
                 Booking b = booking.get(i);
+                //make sure it is booked by login customer
                 if (b.getSchCustId().getCustId().equals(SessionUtils.getUserId())) {
                     if (b.getSchBbqId()!= null) {
                         bbqList.add(b);

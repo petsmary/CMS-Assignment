@@ -99,6 +99,7 @@ public class RegistryBean implements Serializable {
     public RegistryBean() {
     }
 
+    //add a new customer datails and account
     public void signup() {
         try {
             if (password.equals(xpassword)) {

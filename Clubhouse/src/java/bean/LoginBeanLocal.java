@@ -67,12 +67,14 @@ public class LoginBeanLocal implements Serializable {
         }
     }
 
+    //logout
     public String logout() {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
         return "login";
     }
     
+    //logout
     public String logout2() {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();

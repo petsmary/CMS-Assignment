@@ -80,9 +80,9 @@ public class LoginBean implements Serializable {
                 if (account.getLoginName().equals(username) && account.getPassword().equals(password) && account.getIsOfficer()) {
                     HttpSession session = SessionUtils.getSession();
                     session.setAttribute("username", username);
-                    session.setAttribute("userid", account.getAccCustId().getCustId());
+                    session.setAttribute("userid", account.getAccOffId().getOffId());
                     session.setAttribute("officer", "yes");
-                    return "customer";
+                    return "admin";
                 }
             }
         } catch (Exception ex) {

@@ -105,10 +105,14 @@ public class AccountBean implements Serializable {
     }
 
     public void updatePassword() {
-        if (oldpassword.equals(account.getPassword()) && newpassword.equals(confirmpassword) && !newpassword.equals(oldpassword) && !confirmpassword.equals(oldpassword)) {
-            account.setPassword(newpassword);
-            accountsFacade.edit(account);
-        } else {
+        try {
+            if (oldpassword.equals(account.getPassword()) && newpassword.equals(confirmpassword) && !newpassword.equals(oldpassword) && !confirmpassword.equals(oldpassword)) {
+                account.setPassword(newpassword);
+                accountsFacade.edit(account);
+            } else {
+                this.error = true;
+            }
+        } catch (Exception ex) {
             this.error = true;
         }
     }

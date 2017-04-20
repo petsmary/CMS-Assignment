@@ -168,6 +168,7 @@ public class ShowBean implements Serializable {
         this.comid = comid;
     }
 
+    //add comment by officer
     public void addComment(Integer comid) {
         this.comid = comid;
         Complaints c = complaintsFacade.find(comid);

@@ -79,6 +79,7 @@ public class ManageBean implements Serializable {
     private String end;
     DateFormat sdf = new SimpleDateFormat("hh:mm:ss");
 
+    //assign the list data
     public ManageBean() {
         availableItems = new LinkedHashMap<String, String>();
         availableItems.put(FACILITES[0], FACILITES[0]);
@@ -188,6 +189,7 @@ public class ManageBean implements Serializable {
         return availableItems;
     }
 
+    //add new facility
     public void add() {
         try {
             if (type.equals(FACILITES[0])) {
@@ -206,7 +208,7 @@ public class ManageBean implements Serializable {
                 }
                 Bbqs bbq = new Bbqs(bbqId, nameadd, location, sdf.parse(open), sdf.parse(end), limit, date, 0);
                 bbqsFacade.create(bbq);
-            } else if (facility.equals(FACILITES[1])) {
+            } else if (type.equals(FACILITES[1])) {
                 int i = gymroomsFacade.findAll().size();
                 String bbqId = "G0001";
                 if (i < 9) {
@@ -222,7 +224,7 @@ public class ManageBean implements Serializable {
                 }
                 Gymrooms bbq = new Gymrooms(bbqId, nameadd, location, sdf.parse(open), sdf.parse(end), limit, date, 0);
                 gymroomsFacade.create(bbq);
-            } else if (facility.equals(FACILITES[2])) {
+            } else if (type.equals(FACILITES[2])) {
                 int i = swimmingpoolsFacade.findAll().size();
                 String bbqId = "P0001";
                 if (i < 9) {
@@ -238,7 +240,7 @@ public class ManageBean implements Serializable {
                 }
                 Swimmingpools bbq = new Swimmingpools(bbqId, nameadd, location, sdf.parse(open), sdf.parse(end), limit, date, 0);
                 swimmingpoolsFacade.create(bbq);
-            } else if (facility.equals(FACILITES[3])) {
+            } else if (type.equals(FACILITES[3])) {
                 int i = saunaroomsFacade.findAll().size();
                 String bbqId = "A0001";
                 if (i < 9) {
@@ -254,7 +256,7 @@ public class ManageBean implements Serializable {
                 }
                 Saunarooms bbq = new Saunarooms(bbqId, nameadd, location, sdf.parse(open), sdf.parse(end), limit, date, 0);
                 saunaroomsFacade.create(bbq);
-            } else if (facility.equals(FACILITES[4])) {
+            } else if (type.equals(FACILITES[4])) {
                 int i = studyroomsFacade.findAll().size();
                 String bbqId = "T0001";
                 if (i < 9) {
@@ -279,6 +281,7 @@ public class ManageBean implements Serializable {
         }
     }
 
+    //get five facility list data from database for customer to book
     public Map<String, String> getDateList() {
         dateList = new LinkedHashMap<String, String>();
         if (facility.equals(FACILITES[0])) {
@@ -310,9 +313,11 @@ public class ManageBean implements Serializable {
         return dateList;
     }
 
+    //after select the data and facility, book it
     public void book() {
         if (facility.equals(FACILITES[0])) {
             Bbqs bbq = bbqsFacade.find(id);
+            //check not to book the same data in bbqs(0) before
             boolean check = bookingFacade.check(SessionUtils.getUserId(), id, 0);
             if (bbq.getLimited() > bbq.getTaken() && check) {
                 int i = bookingFacade.findAll().size();

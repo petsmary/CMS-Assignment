@@ -53,11 +53,13 @@ public class LoginBean implements Serializable {
         this.password = password;
     }
 
+    //login by customer
     public String valid() {
         try {
             List<Accounts> list = accountsFacade.findAll();
             for (int i = 0; i < list.size(); i++) {
                 Accounts account = list.get(i);
+                //check the input username and password and make sure it is a customer account
                 if (account.getLoginName().equals(username) && account.getPassword().equals(password) && !account.getIsOfficer()) {
                     HttpSession session = SessionUtils.getSession();
                     session.setAttribute("username", username);
@@ -72,17 +74,19 @@ public class LoginBean implements Serializable {
         return "error";
     }
     
+    //login by officers
     public String validAdmin() {
         try {
             List<Accounts> list = accountsFacade.findAll();
             for (int i = 0; i < list.size(); i++) {
                 Accounts account = list.get(i);
+                //check the input username and password and make sure it is an officer account
                 if (account.getLoginName().equals(username) && account.getPassword().equals(password) && account.getIsOfficer()) {
                     HttpSession session = SessionUtils.getSession();
                     session.setAttribute("username", username);
-                    session.setAttribute("userid", account.getAccCustId().getCustId());
+                    session.setAttribute("userid", account.getAccOffId().getOffId());
                     session.setAttribute("officer", "yes");
-                    return "customer";
+                    return "admin";
                 }
             }
         } catch (Exception ex) {

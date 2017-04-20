@@ -64,6 +64,7 @@ public class ComplaintsBean implements Serializable {
         this.complaint = complaint;
     }
     
+    //get the complaints or inquiries history of login customer and show the comment of officers
     public ArrayList<Complaints> getList() {
         List<Complaints> list = complaintsFacade.findAll();
         ArrayList<Complaints> complaints = new ArrayList<Complaints>();
@@ -76,23 +77,28 @@ public class ComplaintsBean implements Serializable {
         return complaints;
     }
     
+    //add the complaints or inquiries to database 
     public void send() {
-        int i = complaintsFacade.findAll().size();
-        Complaints complain = new Complaints();
-        if (i < 10) {
-            complain = new Complaints((i + 1), message);
-        } else if (i >= 10 && i < 100) {
-            complain = new Complaints((i + 1), message);
+        try {
+            int i = complaintsFacade.findAll().size();
+            Complaints complain = new Complaints();
+            if (i < 10) {
+                complain = new Complaints((i + 1), message);
+            } else if (i >= 10 && i < 100) {
+                complain = new Complaints((i + 1), message);
+            }
+            if (i >= 100 && i < 1000) {
+                complain = new Complaints((i + 1), message);
+            }
+            if (i >= 1000 && i < 10000) {
+                complain = new Complaints((i + 1), message);
+            }
+            complain.setComCustId(customersFacade.find(SessionUtils.getUserId()));
+            complaintsFacade.create(complain);
+            this.complaint = true;
+        } catch (Exception ex) {
+
         }
-        if (i >= 100 && i < 1000) {
-            complain = new Complaints((i + 1), message);
-        }
-        if (i >= 1000 && i < 10000) {
-            complain = new Complaints((i + 1), message);
-        }
-        complain.setComCustId(customersFacade.find(SessionUtils.getUserId()));
-        complaintsFacade.create(complain);
-        this.complaint = true;
     }
     
 }

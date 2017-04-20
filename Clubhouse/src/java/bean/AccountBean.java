@@ -80,6 +80,7 @@ public class AccountBean implements Serializable {
         this.error = error;
     }
 
+    //list the customer details for which customer login
     public void getAccountDetails() {
         try {
             List<Accounts> list = accountsFacade.findAll();
@@ -98,17 +99,24 @@ public class AccountBean implements Serializable {
         }
     }
 
+    //after customer click the button, update the customer details
     public void updateDetails() {
         Customers c = account.getAccCustId();
         c.setLastUpdate(new Date());
         customersFacade.edit(c);
     }
 
+    //after customer click the button, update the customer account password
     public void updatePassword() {
-        if (oldpassword.equals(account.getPassword()) && newpassword.equals(confirmpassword) && !newpassword.equals(oldpassword) && !confirmpassword.equals(oldpassword)) {
-            account.setPassword(newpassword);
-            accountsFacade.edit(account);
-        } else {
+        try {
+            //the new password cannot same as old password and should input the new password twice to confirm
+            if (oldpassword.equals(account.getPassword()) && newpassword.equals(confirmpassword) && !newpassword.equals(oldpassword) && !confirmpassword.equals(oldpassword)) {
+                account.setPassword(newpassword);
+                accountsFacade.edit(account);
+            } else {
+                this.error = true;
+            }
+        } catch (Exception ex) {
             this.error = true;
         }
     }

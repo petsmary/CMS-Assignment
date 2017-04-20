@@ -33,7 +33,7 @@ public class ComplaintsBean implements Serializable {
     private String name;
     private String message;
     private boolean complaint;
-    
+
     public ComplaintsBean() {
         if (SessionUtils.getUserName() != null) {
             name = SessionUtils.getUserName();
@@ -55,7 +55,7 @@ public class ComplaintsBean implements Serializable {
     public void setMessage(String message) {
         this.message = message;
     }
-    
+
     public boolean isComplaint() {
         return complaint;
     }
@@ -63,36 +63,40 @@ public class ComplaintsBean implements Serializable {
     public void setComplaint(boolean complaint) {
         this.complaint = complaint;
     }
-    
+
     public ArrayList<Complaints> getList() {
         List<Complaints> list = complaintsFacade.findAll();
         ArrayList<Complaints> complaints = new ArrayList<Complaints>();
         for (int i = 0; i < list.size(); i++) {
             Complaints e = list.get(i);
-            if(e.getComCustId().getCustId().equals(SessionUtils.getUserId())) {
+            if (e.getComCustId().getCustId().equals(SessionUtils.getUserId())) {
                 complaints.add(e);
             }
         }
         return complaints;
     }
-    
+
     public void send() {
-        int i = complaintsFacade.findAll().size();
-        Complaints complain = new Complaints();
-        if (i < 10) {
-            complain = new Complaints((i + 1), message);
-        } else if (i >= 10 && i < 100) {
-            complain = new Complaints((i + 1), message);
+        try {
+            int i = complaintsFacade.findAll().size();
+            Complaints complain = new Complaints();
+            if (i < 10) {
+                complain = new Complaints((i + 1), message);
+            } else if (i >= 10 && i < 100) {
+                complain = new Complaints((i + 1), message);
+            }
+            if (i >= 100 && i < 1000) {
+                complain = new Complaints((i + 1), message);
+            }
+            if (i >= 1000 && i < 10000) {
+                complain = new Complaints((i + 1), message);
+            }
+            complain.setComCustId(customersFacade.find(SessionUtils.getUserId()));
+            complaintsFacade.create(complain);
+            this.complaint = true;
+        } catch (Exception ex) {
+
         }
-        if (i >= 100 && i < 1000) {
-            complain = new Complaints((i + 1), message);
-        }
-        if (i >= 1000 && i < 10000) {
-            complain = new Complaints((i + 1), message);
-        }
-        complain.setComCustId(customersFacade.find(SessionUtils.getUserId()));
-        complaintsFacade.create(complain);
-        this.complaint = true;
     }
-    
+
 }
